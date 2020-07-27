@@ -18,5 +18,16 @@ class MainActivity : AppCompatActivity() {
             интерфейс LifecycleObserver
          */
         lifecycle.addObserver(getData)
+        if (lifecycle.currentState == Lifecycle.State.INITIALIZED) {
+            Log.d("TAG", "INITIALIZED")
+            println("INITIALIZED")
+        }
+     }
+
+    override fun onStart() {
+        if (lifecycle.currentState == Lifecycle.State.STARTED) {
+            Log.d("TAG", "STARTED")
+        }
+        super.onStart()
     }
 }
