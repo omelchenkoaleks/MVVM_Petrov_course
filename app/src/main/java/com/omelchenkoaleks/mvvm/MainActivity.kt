@@ -2,6 +2,7 @@ package com.omelchenkoaleks.mvvm
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
@@ -9,28 +10,33 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var liveDataString = MutableLiveData<String>()
-    var liveDataInt = MutableLiveData<Int>()
+    val liveDataStringOne = MutableLiveData<String>()
+    val liveDataStringTwo = MutableLiveData<String>()
+    val mediatorLiveData = MediatorLiveData<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        liveDataString.value = "String"
-        liveDataInt.value = 10_000
+        liveDataStringOne.value = "One"
+        liveDataStringTwo.value = "Two"
 
+        mediatorLiveData.addSource(liveDataStringOne) {
+            text_one_for_liveData.text = it
+        }
 
-        text_string_for_liveData.text = liveDataString.value
-        text_int_for_liveData.text = liveDataInt.value.toString()
+        mediatorLiveData.addSource(liveDataStringTwo) {
+            text_two_for_liveData.text = it
+        }
 
-        button_for_liveData.setOnClickListener {
-            liveDataString = Transformations.map(liveDataInt) {
-                it.toString()
-            } as MutableLiveData<String>
+        mediatorLiveData.observe(this, Observer {  })
 
-            liveDataString.observe(this, Observer {
-                text_string_for_liveData.text = it
-            })
+        button_one_for_liveData.setOnClickListener {
+            liveDataStringOne.value = edit_text_for_liveData.text.toString()
+        }
+
+        button_two_for_liveData.setOnClickListener {
+            liveDataStringTwo.value = edit_text_for_liveData.text.toString()
         }
     }
 

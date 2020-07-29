@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/text_string_for_liveData"
+        android:id="@+id/text_one_for_liveData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -17,14 +17,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_int_for_liveData"
+        android:id="@+id/text_two_for_liveData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text=""
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_string_for_liveData" />
+        app:layout_constraintTop_toBottomOf="@id/text_one_for_liveData" />
 
     <EditText
         android:id="@+id/edit_text_for_liveData"
@@ -35,17 +35,27 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_int_for_liveData"
+        app:layout_constraintTop_toBottomOf="@+id/text_two_for_liveData"
         tools:ignore="LabelFor" />
 
     <Button
-        android:id="@+id/button_for_liveData"
+        android:id="@+id/button_one_for_liveData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/save"
+        android:text="@string/save_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_for_liveData" />
+
+    <Button
+        android:id="@+id/button_two_for_liveData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/save_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_one_for_liveData" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
