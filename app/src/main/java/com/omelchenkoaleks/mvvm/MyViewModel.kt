@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 
-class MyViewModel(app: Application) : AndroidViewModel(app) {
+class MyViewModel(app: Application, val str: String) : AndroidViewModel(app) {
 
     val liveData = MutableLiveData<String>()
 
@@ -15,9 +15,9 @@ class MyViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     private fun startTimer() {
-        object : CountDownTimer(10000, 1000) {
+        object : CountDownTimer(5000, 1000) {
             override fun onFinish() {
-                Toast.makeText(getApplication(), "Hello", Toast.LENGTH_LONG).show()
+                Toast.makeText(getApplication(), str, Toast.LENGTH_LONG).show()
             }
 
             override fun onTick(millisUntilFinished: Long) {

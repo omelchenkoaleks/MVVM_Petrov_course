@@ -14,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        myViewModel =
+            ViewModelProvider(this, MyFactory(application, "Factory"))
+                .get(MyViewModel::class.java)
     }
 
     override fun onStart() {
