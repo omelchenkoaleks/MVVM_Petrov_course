@@ -19,18 +19,23 @@ class MainActivity : AppCompatActivity() {
 //    var liveDataString = MutableLiveData<String>()
 
     private val liveData = MyLiveData()
+    lateinit var observer: Observer<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        observer = Observer {
+            text_for_liveData.text = it
+        }
+
         button_for_liveData.setOnClickListener{
             liveData.setValueToLiveData(edit_text_for_liveData.text.toString())
         }
 
-        liveData.observe(this, Observer {
-            text_for_liveData.text = it
-        })
+//        liveData.observe(this, Observer {
+//            text_for_liveData.text = it
+//        })
 
 
 
@@ -52,4 +57,14 @@ class MainActivity : AppCompatActivity() {
 //            println("INITIALIZED")
 //        }
      }
+
+    override fun onStart() {
+        super.onStart()
+        liveData.observe(this, observer)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        liveData.removeObserver(observer)
+    }
 }
