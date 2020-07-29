@@ -4,6 +4,11 @@ import androidx.lifecycle.LiveData
 
 class MyLiveData : LiveData<String>() {
 
+    // Имитация добавления данных, то есть изменение LiveData
+    fun setValueToLiveData(str: String) {
+        value = str
+    }
+
     override fun onActive() {
         super.onActive()
         println("onActive")

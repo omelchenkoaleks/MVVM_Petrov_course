@@ -24,8 +24,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        liveData.observe(this, Observer {
+        button_for_liveData.setOnClickListener{
+            liveData.setValueToLiveData(edit_text_for_liveData.text.toString())
+        }
 
+        liveData.observe(this, Observer {
+            text_for_liveData.text = it
         })
 
 
