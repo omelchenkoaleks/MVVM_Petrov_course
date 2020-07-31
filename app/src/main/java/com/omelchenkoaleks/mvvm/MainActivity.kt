@@ -2,28 +2,17 @@ package com.omelchenkoaleks.mvvm
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var myViewModel: MyViewModel
+    lateinit var navigationController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        myViewModel =
-            ViewModelProvider(this, MyFactory(application, "Factory"))
-                .get(MyViewModel::class.java)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        myViewModel.liveData.observe(this, Observer {
-            test_text_view.text = it
-        })
+        navigationController = Navigation.findNavController(this, R.id.nav_host)
     }
 
 }
